@@ -1,0 +1,33 @@
+<nav>
+   <div 
+   *ngIf="userService?.userData?.username"
+   class="container-fluid img">
+      <a      >
+         <img 
+         [src]="userService.userData?.avatar" alt="">
+         <span class="mx-1"></span>
+         {{userService.userData?.name}}
+       </a>
+   </div>
+   <div class="container-fluid">
+      <h1>Todo app</h1>
+      <div>
+         <a 
+         *ngIf="!userService?.userData?.username"
+         routerLink="/login"
+        >Login</a>
+
+
+        <a
+        *ngIf="userService?.userData?.username"
+        routerLink="/todos"
+        >Todos</a>
+        <a
+        style="cursor: pointer;"
+        (click)="logout()"
+        *ngIf="userService?.userData?.username"
+        >Logout</a>
+      </div>
+   </div>
+</nav>
+<router-outlet></router-outlet>

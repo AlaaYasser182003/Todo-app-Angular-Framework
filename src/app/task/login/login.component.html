@@ -1,0 +1,52 @@
+<div class="container ">
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 login">
+                <div class="p-3 login w-100">
+                
+                    <form 
+                    class="w-100"
+                    (ngSubmit)="submit()" [formGroup]="loginForm">
+                        <h2 class="text-center mb-5">LOGIN</h2>
+                        <div>
+                            <mat-form-field style="width:100%">
+                                <mat-label>Select User</mat-label>
+                                <mat-select formControlName="username">
+                                    <mat-option *ngFor="let user of users" [value]="user?.username">
+                                        {{user?.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p 
+                            *ngIf="
+                       (     loginForm.controls['username']?.errors!=null && loginForm.controls['username']?.touched) ||
+                       (     loginForm.controls['username']?.errors!=null && submited)
+                            "
+                            class="text-danger">
+                                This Field Is Required
+                            </p>
+                        </div>
+                        <div>
+                            <mat-form-field 
+                            style="width:100%"
+                            class="example-full-width">
+                                <mat-label>password</mat-label>
+                                <input matInput type="password" formControlName="password" placeholder="password" value="Sushi">
+                            </mat-form-field>
+                            <p 
+                            *ngIf="
+                            (     loginForm.controls['password']?.errors!=null && loginForm.controls['password']?.touched) ||
+                            (     loginForm.controls['password']?.errors!=null && submited)
+                                 "
+                            class="text-danger">
+                                This Field Is Required
+                            </p>
+                        </div>
+                        <button class="w-100" mat-raised-button color="primary">Submit</button>
+                    </form>
+                </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
